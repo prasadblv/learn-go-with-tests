@@ -1,4 +1,4 @@
-.DEFAULT_GOAL:=build
+.DEFAULT_GOAL:=all
 
 .PHONY:build clean fmt vet test
 
@@ -11,8 +11,11 @@ vet: fmt
 build: vet
 	go build ./...
 
-test:
+test: build
 	go test -v ./... ./hello_world/...
+
+all: test
+	@echo "\n***Build and Test Complete!***\n"
 
 clean:
 	go clean
